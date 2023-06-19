@@ -21,7 +21,6 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     selectedTime = selectedDates[0];
-    console.log(selectedTime);
 
     if (selectedDates[0] <= options.defaultDate) {
       return Notify.failure('Please choose a date in the future');
