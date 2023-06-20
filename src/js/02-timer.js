@@ -42,7 +42,6 @@ function start() {
     updateClockface(time);
     stop(deltaTime);
   }, 1000);
-  // buttonStart.disabled = true;
 }
 
 function updateClockface({ days, hours, minutes, seconds } = time) {
