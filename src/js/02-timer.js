@@ -12,13 +12,14 @@ const dataSeconds = document.querySelector('.timer [data-seconds]');
 buttonStart.disabled = true;
 
 let intervalId = null;
-
+let selectedTime;
 const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
+    console.log(selectedDates[0]);
     selectedTime = selectedDates[0];
 
     if (selectedDates[0] <= options.defaultDate) {
