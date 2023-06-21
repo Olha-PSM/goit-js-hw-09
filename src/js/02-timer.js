@@ -9,7 +9,7 @@ const dataHours = document.querySelector('.timer [data-hours]');
 const dataMinutes = document.querySelector('.timer [data-minutes]');
 const dataSeconds = document.querySelector('.timer [data-seconds]');
 
-buttonStart.disabled = true;
+buttonStart.setAttribute('disabled', 'disabled');
 
 let intervalId = null;
 let selectedTime;
@@ -25,7 +25,7 @@ const options = {
     if (selectedDates[0] <= options.defaultDate) {
       return Notify.failure('Please choose a date in the future');
     } else {
-      buttonStart.disabled = false;
+      buttonStart.removeAttribute('disabled');
     }
   },
 };
@@ -37,13 +37,14 @@ buttonStart.addEventListener('click', start);
 function start() {
   intervalId = setInterval(() => {
     const currentTime = Date.now();
+    buttonStart.setAttribute('disabled', 'disabled');
+    timeInput.setAttribute('disabled', 'disabled');
     const deltaTime = selectedTime - currentTime;
-
     const time = convertMs(deltaTime);
+
     updateClockface(time);
     stop(deltaTime);
   }, 1000);
-  buttonStart.disabled = true;
 }
 
 function updateClockface({ days, hours, minutes, seconds } = time) {
@@ -55,6 +56,7 @@ function updateClockface({ days, hours, minutes, seconds } = time) {
 function stop(deltaTime) {
   if (deltaTime <= 1000) {
     clearInterval(intervalId);
+    timeInput.removeAttribute('disabled');
   }
 }
 function addLeadingZero(value) {
